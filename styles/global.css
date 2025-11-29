@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+*{
+    font-family: poppins;
+}
+
+@font-face {
+   font-family: 'blkchcry';
+   src: url('./fonts/BLKCHCRY.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+
+.font-blkchcry{
+    font-family: 'blkchcry', sans-serif;
+}

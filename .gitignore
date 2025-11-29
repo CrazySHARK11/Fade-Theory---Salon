@@ -1,0 +1,58 @@
+# Dependencies
+/node_modules
+
+# Build output
+.next
+/out
+/build
+
+# Production
+.next
+out
+dist
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local env files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Vercel
+.vercel
+
+# Mac / Linux / Windows system files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Optional: if you use Turbo
+.turbo
+
+# Optional: if you use Next.js cache
+.next/cache
+
+# Optional: if you use dotenv override
+.env*.local
+
+# Optional: Prisma
+/prisma/*.db
+
+# Optional: Docker artifacts
+*.pid
+*.seed
