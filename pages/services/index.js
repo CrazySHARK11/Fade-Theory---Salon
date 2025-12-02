@@ -28,19 +28,23 @@ export default function Services({ services }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
-    const response = await axiosInstance.get("service/");
-    const services = response.data.services;
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/service`);
+    const data = await response.json();
 
     return {
-      props: {
-        services, // <-- now it's a plain object
-      },
+      props: { services: data.services || [] },
     };
   } catch (err) {
+    
+    console.error("Error fetching services:", {
+      message: err.message,
+      stack: err.stack,
+    });
+
     return {
-      props: { services: [] },
+      props: { services: [], err },
     };
   }
 }
