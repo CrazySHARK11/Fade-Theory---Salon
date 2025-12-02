@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SlUser, SlHeart } from "react-icons/sl";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
 export default function Header() {
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
-  const profilePic = user?.profilePic ? `/uploads/profile/${user.profilePic}` : "images/profileimage.jpg"
+  const [isClient, setIsClient] = useState(false);
+  const { isAuthenticated, user } = useSelector((state) => state.auth || { isAuthenticated: false, user: null });
+  const profilePic = user?.profilePic ? `/uploads/profile/${user.profilePic}` : "images/profileimage.jpg"; 
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
 
   return (
@@ -28,14 +33,22 @@ export default function Header() {
               <Link href="/user/wishlist">
                 <SlHeart className="text-2xl" />
               </Link>
-              {isAuthenticated ? (
-              <Link href={"/user"}>
-                <img src={profilePic} className="object-cover rounded-full" style={{ width: '30px', height: '30px' }} />
-              </Link>
+              {isClient ? (
+                isAuthenticated ? (
+                  <Link href={"/user"}>
+                    <img
+                      src={profilePic}
+                      className="object-cover rounded-full"
+                      style={{ width: "30px", height: "30px" }}
+                    />
+                  </Link>
+                ) : (
+                  <Link href={"/login"}>
+                    <SlUser className="text-2xl" />
+                  </Link>
+                )
               ) : (
-              <Link href={"/login"}>
-                <SlUser className="text-2xl" />
-              </Link>
+                <div style={{ width: 30, height: 30 }} />
               )}
             </div>
           </nav>
