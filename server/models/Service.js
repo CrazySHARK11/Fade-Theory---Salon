@@ -18,7 +18,7 @@ const ServiceSchema = new mongoose.Schema({
   averageRating: { type: Number, default: 0 },
   isPremium: { type: Boolean, default: false },
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now, index: true },
 });
 
 ServiceSchema.virtual("likeCount").get(function () {

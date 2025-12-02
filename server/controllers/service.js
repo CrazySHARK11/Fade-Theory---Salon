@@ -41,7 +41,7 @@ export const createService = async (req, res, next) => {
 
 export const getallServices = async (req, res) => {
   try {
-    const services = await Service.find().sort({ createdAt: -1 });
+    const services = await Service.find().sort({ createdAt: -1 }).lean();
     res.json({ success: true, services });
   } catch (err) {
     next(err);
